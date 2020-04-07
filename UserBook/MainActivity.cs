@@ -20,6 +20,15 @@ namespace UserBook
             var userListView = FindViewById<ListView>(Resource.Id.userListView);
             var userListViewAdapter = new UserAdapter();
             userListView.Adapter = userListViewAdapter;
+            
+            // Setting floating action button
+            var fabBtn = FindViewById<Button>(Resource.Id.fabBtn);
+            fabBtn.Click += delegate {
+                var userFormDialog = new RealtimeValidableUserFormDialog(this, onCreatedUser: (user) => {
+                    userListViewAdapter.Add(user);
+                });
+                userFormDialog.Show();
+            };
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
