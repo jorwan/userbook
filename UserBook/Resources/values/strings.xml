@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">User Book</string>
     <string name="action_settings">Settings</string>
+
+    <!--User form dialog-->
+    <string name="create_user">Create User</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="user_form">User Form</string>
+
+    <!--User form error validation messages-->
+    <string name="empty_username_msg">Username can\'t be empty</string>
+    <string name="empty_password_msg">Password can\'t be empty</string>
+    <string name="error_password_letter_number_only_msg">Password must be a mix of numbers and letters only</string>
+    <string name="error_password_letter_msg">Password must have a least a letter</string>
+    <string name="error_password_number_msg">Password must have a least a number</string>
+    <string name="error_password_length_msg">Password must be between 5 and 12 characters in length</string>
+    <string name="error_password_sec_rep_msg">Password must not contain any sequence of characters immediately followed by the same sequence</string>
 </resources>
