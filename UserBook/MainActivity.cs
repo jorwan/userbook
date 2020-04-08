@@ -9,6 +9,9 @@ namespace UserBook
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        UserAdapter UserListViewAdapter { get; set; }
+        IUserRepository UserRepository { get; set; }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -16,16 +19,21 @@ namespace UserBook
             
             SetContentView(Resource.Layout.activity_main);
 
-            // Setting user list view
+            // Get user list
+            UserRepository = new UserJsonRepository();
+            var userList = UserRepository.GetUsers();
+            UserListViewAdapter = new UserAdapter(userList);
+
+            // Set user list view
             var userListView = FindViewById<ListView>(Resource.Id.userListView);
-            var userListViewAdapter = new UserAdapter();
-            userListView.Adapter = userListViewAdapter;
+            userListView.Adapter = UserListViewAdapter;
             
-            // Setting floating action button
+            // Set floating action button
             var fabBtn = FindViewById<Button>(Resource.Id.fabBtn);
             fabBtn.Click += delegate {
                 var userFormDialog = new RealtimeValidableUserFormDialog(this, onCreatedUser: (user) => {
-                    userListViewAdapter.Add(user);
+                    // Add user to list view
+                    UserListViewAdapter.Add(user);
                 });
                 userFormDialog.Show();
             };
@@ -35,6 +43,12 @@ namespace UserBook
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnStop()
+        {
+            UserRepository.Save(UserListViewAdapter.Users);
+            base.OnStop();
         }
     }
 }

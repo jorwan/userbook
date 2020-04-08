@@ -1,6 +1,9 @@
-﻿namespace UserBook
+﻿using System;
+
+namespace UserBook
 {
-    class User
+    [Serializable]
+    public class User
     {
         public string Username { get; set; }
         public string Password { get; set; }
