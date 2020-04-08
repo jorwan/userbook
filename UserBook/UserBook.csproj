@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IUserFormDialogDataValidator.cs" />
+    <Compile Include="IUserRepository.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="RealtimeValidableUserFormDialog.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -81,6 +82,9 @@
     <Compile Include="UserAdapter.cs" />
     <Compile Include="UserFormDialog.cs" />
     <Compile Include="UserFormDialogDataValidator.cs" />
+    <Compile Include="UserJsonRepository.cs" />
+    <Compile Include="UsersJsonReader.cs" />
+    <Compile Include="UsersJsonWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
